@@ -1,0 +1,13 @@
+<h1><%= @guide[:title] %></h1>
+
+<h3>Steps:</h3>
+<ol>
+<% for @step in @guide[:steps] %>
+  <% if @step[0] != " " %>
+    <li><%= @step %></li>
+  <% else %>
+    <p><%= @step %></p>
+  <% end %>
+
+<% end %>
+</ol>
