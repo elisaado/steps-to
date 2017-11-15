@@ -1,0 +1,12 @@
+#t
+Install ZSH and make it pretty (on Arch Linux)
+
+#s
+1. Update the pacman repositories (`sudo pacman -Syu`)
+2. Install zsh (`sudo pacman -S zsh`)
+3. Install grml-zsh-config (`sudo pacman -S grml-zsh-config`)
+4. Install zsh-syntax-highlighting (`sudo pacman -S zsh-syntax-highlighting`)
+5. Add `source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh` to the end of your ~/.zshrc, if the zshrc doesn't exist, create it.
+6. Run `chsh`, enter your password and make the default shell `/usr/bin/zsh`.
+7. Log in and out (or reboot) to apply the changes.
+8. Done!
