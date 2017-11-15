@@ -4,7 +4,6 @@ require "sinatra/reloader"
 set :strict_paths, false
 
 def guideparser(path)
-  puts path
   name = "#{path}" # hack
   name[0..6] = ''
 
@@ -17,14 +16,11 @@ def guideparser(path)
   steps_raw = content[4..-1] if content[3] == "#s"
   steps = []
   
-  puts steps_raw.inspect
-
   steps_raw.each do |step|
     steps.push step and next if step[0] == " " # hack 
     steps.push step.gsub(/(\d+)\. /, '')
   end
   
-  puts steps.inspect
   return {title: title, steps: steps, name: name, path: path}
 end
 
@@ -52,7 +48,6 @@ get '/guides/:guide' do
   guide = nil
 
   guides.each do |guide_obj|
-    puts guide_obj[:name]
     guide = guide_obj if params[:guide] == guide_obj[:name]
   end
   
