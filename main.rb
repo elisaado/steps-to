@@ -4,20 +4,19 @@ require "sinatra/reloader"
 set :strict_paths, false
 
 def guideparser(path)
-  name = "#{path}" # hack
-  name[0..6] = ''
+  name = path[7..-1]
 
-  puts "Parsing: #{name}, #{path}"
+  puts "Parsing: #{name}"
   
   content = File.read(path)
-  content = content.split("\n")
+  guide_raw = content.split("\n")
   
-  title = content[1] if content[0] == "#t"
-  steps_raw = content[4..-1] if content[3] == "#s"
+  title = guide_raw[1] if guide_raw[0] == "#t"
+  steps_raw = guide_raw[4..-1] if guide_raw[3] == "#s"
   steps = []
   
   steps_raw.each do |step|
-    steps.push step and next if step[0] == " " # hack 
+    steps.push step and next if step[0] == " "
     steps.push step.gsub(/(\d+)\. /, '')
   end
   
@@ -26,7 +25,6 @@ end
 
 guides = []
 
-puts "Loading stepfiles..."
 Dir.foreach('guides/') do |filename|
   next if filename == '.' || filename == '..'
 
@@ -45,14 +43,11 @@ get '/guides' do
 end
 
 get '/guides/:guide' do
-  guide = nil
-
-  guides.each do |guide_obj|
-    guide = guide_obj if params[:guide] == guide_obj[:name]
+  @guide = guides.find do |guide|
+    params[:guide] == guide[:name]
   end
+
+  return "Guide not found!" if @guide == [] || @guide == nil
   
-  return "Guide not found!" if guide == nil
-  
-  @guide = guide
   erb :guide
 end
