@@ -24,12 +24,16 @@ a:active {
     color: #1E4E7A;
 }
 
-/* Thank you, css-tricks */
-footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
-   background:#fff;
+/* Thank you, css-tricks user Patrick Denny */
+/* footer */
+html { height: 100%; }
+body {
+    min-height:90%; 
+    position:relative; 
+    padding-bottom:[footer-height] 
+}
+.footer { 
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+    height:[footer-height] 
 }
