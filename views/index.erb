@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Steps To - Welcome</title>
-	<%= erb :reusable %>
-</head>
-<body>
-<p>Welcome to Steps To, the open source version of WikiHow. <a href="/guides">Click here for a list of guides</a>.</p>
-</body>
-</html>
+<p>Welcome to Steps To, the open source version of WikiHow.</p>
+<h3>Guides:</h3>
+<ul>
+<% for @guide in @guides %>
+  <li><a href="/<%= @guide[:path] %>"><%= @guide[:title] %></a></li>
+<% end %>
+</ul>

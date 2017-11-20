@@ -34,12 +34,11 @@ Dir.foreach('guides/') do |filename|
 end
 
 get '/' do
-  erb :index
-end
-
-get '/guides' do
+  @title = "Home"
   @guides = guides
-  erb :guide_list
+  @body = :index
+
+  erb :main
 end
 
 get '/guides/:guide' do
@@ -47,7 +46,9 @@ get '/guides/:guide' do
     params[:guide] == guide[:name]
   end
 
+  @title = @guide[:name]
+  @body = :guide
   return "Guide not found!" if @guide == [] || @guide == nil
   
-  erb :guide
+  erb :main
 end

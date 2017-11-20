@@ -1,4 +1,5 @@
 body {
+	font-family: 'Lato', sans-serif;
 	color: #3E3E3E;
 }
 
@@ -21,4 +22,14 @@ a:hover {
 /* selected link */
 a:active {
     color: #1E4E7A;
+}
+
+/* Thank you, css-tricks */
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#fff;
 }

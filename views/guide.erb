@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Steps To - <%= @guide[:title] %></title>
-	<%= erb :reusable %>
-</head>
-<body>
-	<h1><%= @guide[:title] %></h1>
+<h2><%= @guide[:title] %></h2>
 
-	<h3>Steps:</h3>
-	<ol>
-	<% for @step in @guide[:steps] %>
-	  <% if @step[0] != " " %>
-	    <li><%= @step %></li>
-	  <% else %>
-	    <p><%= @step %></p>
-	  <% end %>
+<h3>Steps:</h3>
+<ol>
+<% for @step in @guide[:steps] %>
+  <% if @step[0] != " " %>
+    <li><%= @step %></li>
+  <% else %>
+    <p><%= @step %></p>
+  <% end %>
 
-	<% end %>
-	</ol>
-</body>
-</html>
-
+<% end %>
+</ol>
