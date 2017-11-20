@@ -1,7 +1,16 @@
 <p>Welcome to Steps To, the open source version of WikiHow.</p>
 <h3>Guides:</h3>
 <ul>
-<% for @guide in @guides %>
-  <li><a href="/<%= @guide[:path] %>"><%= @guide[:title] %></a></li>
+<% @guides.each do |letter, guides| %>
+	<li>
+		<%= letter %>
+		<ul>
+			<% for @guide in guides %>
+			  <li><a href="/<%= @guide[:path] %>"><%= @guide[:title] %></a></li>
+			<% end %>
+		</ul>
+	</li>
+
 <% end %>
 </ul>
+

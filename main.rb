@@ -34,9 +34,20 @@ Dir.foreach('guides/') do |filename|
   guides.push guideparser("guides/#{filename}")
 end
 
+guides.sort_by!{|g| g[:name].downcase}
+
+guide_list = {}
+
+guides.each do |guide|
+  first_letter = guide[:name][0]
+  guide_list[first_letter] ||= []
+
+  guide_list[first_letter].push guide
+end # this can be done more, eh, better
+
 get '/' do
   @title = "Home"
-  @guides = guides
+  @guides = guide_list
   @body = :index
 
   erb :main
