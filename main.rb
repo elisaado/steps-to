@@ -2,6 +2,7 @@ require 'sinatra'
 require "sinatra/reloader" if ARGV[0] == "dev"
 
 set :strict_paths, false
+set :show_exceptions, false if ARGV[0] != "dev"
 
 def guideparser(path)
   name = path[7..-1]
@@ -50,5 +51,16 @@ get '/guides/:guide' do
   @body = :guide
   return "Guide not found!" if @guide == [] || @guide == nil
   
+  erb :main
+end
+
+error 404 do
+  @error = 404
+
+  status @error
+
+  @title = "Not found (#{@error})"
+  @body = :error
+  @desc = "This page could not be found"
   erb :main
 end
