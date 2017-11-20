@@ -1,5 +1,5 @@
 require 'sinatra'
-require "sinatra/reloader"
+require "sinatra/reloader" if ARGV[0] == "dev"
 
 set :strict_paths, false
 
