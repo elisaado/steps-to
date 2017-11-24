@@ -4,6 +4,10 @@ Install ZSH and make it pretty (on Arch Linux)
 #b
 Eli Saado
 
+#n
+* A computer with Arch Linux (or variants, like Antergos)
+* A working internet connection
+
 #s
 1. Update the pacman repositories (`sudo pacman -Syu`)
 2. Install zsh (`sudo pacman -S zsh`)

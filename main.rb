@@ -16,19 +16,24 @@ def guideparser(path)
   content = File.read(path)
 
   title = content.split("#t")[1].split("\n")[1]
-
   by = content.split("#b")[1].split("\n")[1]
 
-  steps_raw = content.split("#s")[1].split("\n")[1..-1]
-  puts steps_raw.inspect
-  steps = []
-  
+  needed_raw = content.split("#n")[1..-1].join("").split("\n")[1..-1]
+  needed_stuff = []
+  needed_raw.each do |needed|
+    break if needed[0] != "*"
+    needed_stuff.push(needed[2..-1])
+  end
+
+  puts content.split("#s").inspect
+  steps_raw = content.split("#s")[1..-1].join("").split("\n")[1..-1]
+  steps = []  
   steps_raw.each do |step|
     steps.push step and next if step[0] == " "
     steps.push step.gsub(/(\d+)\. /, '')
   end
-  
-  return {title: title, by: by, steps: steps, name: name, path: path}
+
+  return {title: title, by: by, steps: steps, name: name, path: path, needed_stuff: needed_stuff}
 end
 
 guides = []

@@ -1,5 +1,12 @@
 <h2><%= @guide[:title] %></h2>
 
+<h3>What you need:</h3>
+<ul>
+  <% for needed_thing in @guide[:needed_stuff] %>
+    <li><%= needed_thing %></li>
+  <% end %>
+</ul>
+
 <h3>Steps:</h3>
 <ol>
 <% for @step in @guide[:steps] %>
@@ -8,7 +15,6 @@
   <% else %>
     <p><%= @step %></p>
   <% end %>
-
 <% end %>
 </ol>
 

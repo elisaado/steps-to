@@ -4,6 +4,10 @@ Write a guide for Steps To
 #b
 Eli Saado
 
+#n
+* A Computer
+* A GitHub Account
+
 #s
 1. Create a new file
 2. Put "#t" at the top (title tag)
@@ -12,11 +16,18 @@ Eli Saado
 5. Under the empty line put "#b" (by tag)
 6. Under the #b, you should put the name of the person who wrote the guide, if you prefer not to, use "anonymous"
 7. Empty line again
-8. Under the empty line "#s" (steps tag)
-9. And under that should be your steps, like this (but a little bit more detailed):
+8. A #n (needed stuff tag)
+9. Stuff someone needs to successfully perform the guide, like this (don't EVER start a needed stuff line without a * (it should ALWAYS be at the start)):
+   * A pot
+   * A stove
+   * Water
+   * Pasta
+   * A fork
+10. Under the empty line "#s" (steps tag)
+11. And under that should be your steps, like this (but a little bit more detailed):
    1. Grab pasta
    2. Grab a pot and put it on a stove
    3. Put water in the pot
    4. Put pasta in the water
    5. Turn on the stove
-10. You're done writing! Now save the file and submit a do a pull request on GitHub (or send us a message so we can add it).
+12. You're done writing! Now save the file and submit a do a pull request on GitHub (or send us a message so we can add it).
