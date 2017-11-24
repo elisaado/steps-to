@@ -1,34 +1,46 @@
 body {
-	font-family: 'Lato', sans-serif;
-	color: #3E3E3E;
+  font-family: 'Lato', sans-serif;
+  color: #3E3E3E;
 }
 
 /* unvisited link */
 a:link {
-    color: #3B7BB8;
-    text-decoration: none;
+  color: #3B7BB8;
+  text-decoration: none;
 }
 
 /* visited link */
 a:visited {
-    color: #3B7BB8;
+  color: #3B7BB8;
 }
 
 /* mouse over link */
 a:hover {
-    color: #396D9E;
+  color: #396D9E;
 }
 
 /* selected link */
 a:active {
-    color: #1E4E7A;
+  color: #1E4E7A;
 }
 
 /* Thank you, css-tricks user Patrick Denny */
 /* footer */
-html { height: 100%; }
+html { 
+  height: 100%; 
+}
+
 body {
-    min-height:90%; 
-    position:relative; 
-    padding-bottom:[footer-height] 
+  min-height: 90%;
+  position: relative;
+  padding-bottom: [footer-height];
+}
+
+/* Search stuff */
+.searchbar {
+
+}
+
+.searchbutton {
+
 }

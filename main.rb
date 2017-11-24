@@ -17,7 +17,9 @@ def guideparser(path)
   guide_raw = content.split("\n")
   
   title = guide_raw[1] if guide_raw[0] == "#t"
-  steps_raw = guide_raw[4..-1] if guide_raw[3] == "#s"
+  by = guide_raw[4] if guide_raw[3] == "#b"
+
+  steps_raw = guide_raw[7..-1] if guide_raw[6] == "#s"
   steps = []
   
   steps_raw.each do |step|
@@ -25,7 +27,7 @@ def guideparser(path)
     steps.push step.gsub(/(\d+)\. /, '')
   end
   
-  return {title: title, steps: steps, name: name, path: path}
+  return {title: title, by: by, steps: steps, name: name, path: path}
 end
 
 guides = []

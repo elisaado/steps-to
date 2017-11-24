@@ -3,15 +3,15 @@
 
 <script type="text/javascript">
   function search() {
-    let hostname = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+    let hostname = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port: '');
     let url = hostname + "/search/" + document.getElementById('term').value;
     location.href = url;
     return false;
   }
 </script>
 <form onsubmit="return search();" method="get">
-  <input type="text" id="term" placeholder="Search...">
-  <button>Go!</button>
+  <input type="text" class="searchbar" id="term" placeholder="Search...">
+  <button class="searchbutton">Go!</button>
 </form>
 
 <ul>

@@ -1,13 +1,22 @@
 #t
 Write a guide for Steps To
 
+#b
+Eli Saado
+
 #s
 1. Create a new file
-2. put at top "#t"
-3. under that put a title
-4. leave a line empty
-5. put under the empty line "#s"
-6. Put the steps like this:
-   1. blah
-   2. blah2
-   3. blah3
+2. Put "#t" at the top (title tag)
+3. On the next line, put a title for the guide, something like "Cook pasta", don't add "how to" or anything like that, and don't put a period at the end (same for the steps)
+4. Leave the line under the title empty
+5. Under the empty line put "#b" (by tag)
+6. Under the #b, you should put the name of the person who wrote the guide, if you prefer not to, use "anonymous"
+7. Empty line again
+8. Under the empty line "#s" (steps tag)
+9. And under that should be your steps, like this (but a little bit more detailed):
+   1. Grab pasta
+   2. Grab a pot and put it on a stove
+   3. Put water in the pot
+   4. Put pasta in the water
+   5. Turn on the stove
+10. You're done writing! Now save the file and submit a do a pull request on GitHub (or send us a message so we can add it).
