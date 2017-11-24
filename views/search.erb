@@ -1,0 +1,12 @@
+<div>
+  <h3>Search results:</h3>
+  <% if @results.size > 0 %>
+    <ul>
+      <% for @guide in @results %>
+        <li><a href="/<%= @guide[:path] %>"><%= @guide[:title] %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Sorry, no guides were found</p>
+  <% end %>
+</div>

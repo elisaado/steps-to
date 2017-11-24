@@ -1,8 +1,12 @@
 require 'sinatra'
-require "sinatra/reloader" if ARGV[0] == "dev"
+
+dev = ARGV[0] == "dev"
+require "sinatra/reloader" if dev
 
 set :strict_paths, false
-set :show_exceptions, false if ARGV[0] != "dev"
+set :show_exceptions, false if dev
+
+puts "Dev mode!" if dev
 
 def guideparser(path)
   name = path[7..-1]
@@ -62,6 +66,19 @@ get '/guides/:guide' do
   @body = :guide
   return "Guide not found!" if @guide == [] || @guide == nil
   
+  erb :main
+end
+
+get '/search/:term' do
+  @results = []
+
+  @title = "Search \"#{params[:term]}\""
+  @body = :search
+
+  guides.each do |guide|
+    @results.push guide if /#{params[:term].downcase}/.match guide[:name]
+  end
+
   erb :main
 end
 

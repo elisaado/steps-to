@@ -1,14 +1,28 @@
 <p>Welcome to Steps To, the open source version of WikiHow.</p>
 <h3>Guides:</h3>
+
+<script type="text/javascript">
+  function search() {
+    let hostname = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+    let url = hostname + "/search/" + document.getElementById('term').value;
+    location.href = url;
+    return false;
+  }
+</script>
+<form onsubmit="return search();" method="get">
+  <input type="text" id="term" placeholder="Search...">
+  <button>Go!</button>
+</form>
+
 <ul>
 <% @guides.each do |letter, guides| %>
-	<li>
-		<%= letter %>
-		<ul>
-			<% for @guide in guides %>
-			  <li><a href="/<%= @guide[:path] %>"><%= @guide[:title] %></a></li>
-			<% end %>
-		</ul>
-	</li>
+  <li>
+    <%= letter %>
+    <ul>
+      <% for @guide in guides %>
+        <li><a href="/<%= @guide[:path] %>"><%= @guide[:title] %></a></li>
+      <% end %>
+    </ul>
+  </li>
 <% end %>
 </ul>
