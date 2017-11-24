@@ -9,17 +9,18 @@ set :show_exceptions, false if dev
 puts "Dev mode!" if dev
 
 def guideparser(path)
-  name = path[7..-1]
+  name = path.split('/')[1]
 
   puts "Parsing: #{name}"
   
   content = File.read(path)
-  guide_raw = content.split("\n")
-  
-  title = guide_raw[1] if guide_raw[0] == "#t"
-  by = guide_raw[4] if guide_raw[3] == "#b"
 
-  steps_raw = guide_raw[7..-1] if guide_raw[6] == "#s"
+  title = content.split("#t")[1].split("\n")[1]
+
+  by = content.split("#b")[1].split("\n")[1]
+
+  steps_raw = content.split("#s")[1].split("\n")[1..-1]
+  puts steps_raw.inspect
   steps = []
   
   steps_raw.each do |step|
