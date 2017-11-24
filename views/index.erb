@@ -1,5 +1,4 @@
 <p>Welcome to Steps To, the open source version of WikiHow.</p>
-<h3>Guides:</h3>
 
 <script type="text/javascript">
   function search() {
@@ -9,10 +8,14 @@
     return false;
   }
 </script>
+
+<p>Search for a guide</p>
 <form onsubmit="return search();" method="get">
   <input type="text" class="searchbar" id="term" placeholder="Search...">
-  <button class="searchbutton">Go!</button>
+  <button class="searchbutton">Search</button>
 </form>
+
+<h3>The guides we have</h3>
 
 <ul>
 <% @guides.each do |letter, guides| %>
@@ -26,3 +29,5 @@
   </li>
 <% end %>
 </ul>
+
+<a href="/info">Info and Contact</a>

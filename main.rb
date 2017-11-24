@@ -4,7 +4,7 @@ dev = ARGV[0] == "dev"
 require "sinatra/reloader" if dev
 
 set :strict_paths, false
-set :show_exceptions, false if dev
+set :show_exceptions, false if !dev
 
 puts "Dev mode!" if dev
 
@@ -12,22 +12,21 @@ def guideparser(path)
   name = path.split('/')[1]
 
   puts "Parsing: #{name}"
-  
+
   content = File.read(path)
 
   title = content.split("#t")[1].split("\n")[1]
   by = content.split("#b")[1].split("\n")[1]
 
-  needed_raw = content.split("#n")[1..-1].join("").split("\n")[1..-1]
+  needed_raw = content.split("#n").drop(1).join("").split("\n").drop(1)
   needed_stuff = []
   needed_raw.each do |needed|
     break if needed[0] != "*"
     needed_stuff.push(needed[2..-1])
   end
 
-  puts content.split("#s").inspect
-  steps_raw = content.split("#s")[1..-1].join("").split("\n")[1..-1]
-  steps = []  
+  steps_raw = content.split("#s").drop(1).join("").split("\n").drop(1)
+  steps = []
   steps_raw.each do |step|
     steps.push step and next if step[0] == " "
     steps.push step.gsub(/(\d+)\. /, '')
@@ -42,7 +41,7 @@ Dir.foreach('guides/') do |filename|
   next if filename == '.' || filename == '..'
 
   puts "Loading: #{filename}"
-  
+
   guides.push guideparser("guides/#{filename}")
 end
 
@@ -73,7 +72,7 @@ get '/guides/:guide' do
   @title = @guide[:name]
   @body = :guide
   return "Guide not found!" if @guide == [] || @guide == nil
-  
+
   erb :main
 end
 
@@ -86,6 +85,13 @@ get '/search/:term' do
   guides.each do |guide|
     @results.push guide if /#{params[:term].downcase}/.match guide[:name]
   end
+
+  erb :main
+end
+
+get '/info' do
+  @title = "Info"
+  @body = :info
 
   erb :main
 end
