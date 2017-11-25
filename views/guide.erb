@@ -1,4 +1,3 @@
-<% if @guide.to_s.size > 0 || guide.to_s != "[]" %>
 <h2><%= @guide[:title] %></h2>
 
 <h3>What you need:</h3>
@@ -20,6 +19,3 @@
 </ol>
 
 <p>Guide by: <%= @guide[:by] %></p>
-<% else %>
-<h3>Guide not found</h3>
-<% end %>
