@@ -6,7 +6,7 @@ require "sinatra/reloader" if dev
 set :strict_paths, false
 set :show_exceptions, false if !dev
 
-puts "Dev mode!" if dev
+puts "Starting in dev mode" if dev
 
 def guideparser(path)
   name = path.split('/')[1]
@@ -68,12 +68,21 @@ get '/guides/:guide' do
   @guide = guides.find do |guide|
     params[:guide] == guide[:name]
   end
+  if @guide.to_s.size > 0 && @guide.to_s != "[]"
+    @title = @guide[:name]
+    @body = :guide
 
-  @title = @guide[:name]
-  @body = :guide
-  return "Guide not found!" if @guide == [] || @guide == nil
+    erb :main
+  else
+    @error = 404
 
-  erb :main
+    status @error
+
+    @title = "Not found (#{@error})"
+    @body = :error
+    @desc = "This page could not be found"
+    erb :main
+  end
 end
 
 get '/search/:term' do
