@@ -29,7 +29,7 @@ def guideparser(path)
   steps = []
   steps_raw.each do |step|
     steps.push step and next if step[0] == " "
-    steps.push step.gsub(/(\d+)\. /, '')
+    steps.push step.sub(/(\d+)\. /, '')
   end
 
   return {title: title, by: by, steps: steps, name: name, path: path, needed_stuff: needed_stuff}
