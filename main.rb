@@ -1,10 +1,11 @@
 require 'sinatra'
+require 'json'
 
 if ARGV[0] == "dev"
   require "sinatra/reloader"
   puts "Starting in dev mode!"
 else
-  set :environment, :production if !dev
+  set :environment, :production
   puts "Starting in production mode!"
 end
 
@@ -58,6 +59,14 @@ guides.each do |guide|
   guide_list[first_letter].push guide
 end # this can be done more, eh, better
 
+def jsonResponse(ok: true, error: nil, description: nil, result: nil)
+  if ok
+    return {ok: true, result: result}.to_json
+  else
+    return {ok: false, error: error, description: description}.to_json
+  end
+end
+
 get '/' do
   @title = "Home"
   @guides = guide_list
@@ -105,6 +114,26 @@ get '/info' do
   @body = :info
 
   erb :main
+end
+
+get '/api' do
+  jsonResponse(result: "Welcome to our API! See /api/docs for docs")
+end
+
+get '/api/docs' do
+  # TODO: write docs
+  jsonResponse(result: "Yeah... I still need to write docs")
+end
+
+get '/api/guides' do
+  jsonResponse(result: guides)
+end
+
+get '/api/guides/:name' do
+  guide = guides.find do |guide|
+    params[:name] == guide[:name]
+  end
+  jsonResponse(result: guide)
 end
 
 error 404 do
