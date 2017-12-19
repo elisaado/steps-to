@@ -67,6 +67,10 @@ def jsonResponse(ok: true, error: nil, description: nil, result: nil)
   end
 end
 
+before ['/api/*', '/api'] do
+  content_type 'application/json'
+end
+
 get '/' do
   @title = "Home"
   @guides = guide_list
@@ -136,13 +140,28 @@ get '/api/guides/:name' do
   jsonResponse(result: guide)
 end
 
-error 404 do
-  @error = 404
+get '/api/guides/search/:term' do
+  results = []
 
-  status @error
+  guides.each do |guide|
+    results.push guide if /#{params[:term].downcase}/.match guide[:name]
+  end
 
-  @title = "Not found (#{@error})"
-  @body = :error
-  @desc = "This page could not be found"
-  erb :main
+  jsonResponse(result: results)
+end
+
+not_found do
+  if request.path_info[0..4] == "/api/" 
+    @error = 404
+    status @error
+    jsonResponse(ok: false, error: 404, description: "Method not found")
+  else
+    @error = 404
+    status @error
+
+    @title = "Not found (#{@error})"
+    @body = :error
+    @desc = "This page could not be found"
+    erb :main
+  end
 end
