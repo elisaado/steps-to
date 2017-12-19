@@ -1,12 +1,14 @@
 require 'sinatra'
 
-dev = ARGV[0] == "dev"
-require "sinatra/reloader" if dev
+if ARGV[0] == "dev"
+  require "sinatra/reloader"
+  puts "Starting in dev mode!"
+else
+  set :environment, :production if !dev
+  puts "Starting in production mode!"
+end
 
 set :strict_paths, false
-set :show_exceptions, false if !dev
-
-puts "Starting in dev mode" if dev
 
 def guideparser(path)
   name = path.split('/')[1]
@@ -29,7 +31,7 @@ def guideparser(path)
   steps = []
   steps_raw.each do |step|
     steps.push step and next if step[0] == " "
-    steps.push step.sub(/(\d+)\. /, '')
+    steps.push step.sub(/(\d+)\.  /, '')
   end
 
   return {title: title, by: by, steps: steps, name: name, path: path, needed_stuff: needed_stuff}
