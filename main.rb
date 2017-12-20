@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'json'
 
+set :protection, :except => [:json_csrf]
+
 if ARGV[0] == "dev"
   require "sinatra/reloader"
   puts "Starting in dev mode!"
