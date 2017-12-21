@@ -103,13 +103,14 @@ get '/guides/:guide' do
 end
 
 get '/search/:term' do
+  params[:term].gsub!(/\%20/, ' ')
   @results = []
 
   @title = "Search \"#{params[:term]}\""
   @body = :search
 
   guides.each do |guide|
-    @results.push guide if /#{params[:term].downcase}/.match guide[:name]
+    @results.push guide if /#{params[:term]}/i.match guide[:title]
   end
 
   erb :main
@@ -143,6 +144,7 @@ get '/api/guides/:name' do
   if guide.nil?
     return jsonResponse(ok: false, error: 404, description: "Guide not found")
   end
+  
   jsonResponse(result: guide)
 end
 
@@ -150,7 +152,7 @@ get '/api/guides/search/:term' do
   results = []
 
   guides.each do |guide|
-    results.push guide if /#{params[:term].downcase}/.match guide[:name]
+    results.push guide if /#{params[:term].downcase}/i.match guide[:title]
   end
 
   jsonResponse(result: results)
