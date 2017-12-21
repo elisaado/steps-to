@@ -139,6 +139,10 @@ get '/api/guides/:name' do
   guide = guides.find do |guide|
     params[:name] == guide[:name]
   end
+
+  if guide.nil?
+    return jsonResponse(ok: false, error: 404, description: "Guide not found")
+  end
   jsonResponse(result: guide)
 end
 
