@@ -44,3 +44,8 @@ body {
 .searchbutton {
 
 }
+
+/*makes sure the font is nice*/
+body {
+  font-family: ‘Comic Sans MS’;
+}
