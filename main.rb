@@ -133,7 +133,7 @@ end
 
 get '/api/docs' do
   # TODO: write docs
-  jsonResponse(result: "Yeah... I still need to write docs")
+  jsonResponse(result: "Yeah... I still need to write docs, just look at the source code please")
 end
 
 get '/api/guides' do
