@@ -14,7 +14,6 @@ old_last_sha = last_sha
 loop do
   sleep 10
   last_sha = JSON.parse(Net::HTTP.get(URI("https://api.github.com/repos/elisaado/steps-to/commits")))[0]["sha"]
-  old_last_sha = last_sha
 
   if old_last_sha == last_sha
     next
@@ -27,4 +26,5 @@ loop do
       exec "ruby main.rb #{ARGV[0]}"
     end
   end
+  old_last_sha = last_sha
 end
