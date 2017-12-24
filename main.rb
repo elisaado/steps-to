@@ -27,7 +27,11 @@ def guideparser(path)
   needed_stuff = []
   needed_raw.each do |needed|
     break if needed[0] != "*"
-    needed_stuff.push(needed[2..-1])
+    if needed_stuff[1].match(/\s/)
+      needed_stuff.push(needed[2..-1])
+    else
+      needed_stuff.push(needed[1..-1])
+    end
   end
 
   steps_raw = content.split("#s").drop(1).join("").split("\n").drop(1)
