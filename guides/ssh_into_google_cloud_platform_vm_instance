@@ -10,4 +10,8 @@ Merijn Sandvliet (CB101)
 * A Google Cloud Platform VM Instance
 
 #s
-1. Create an ssh-rsa key with ssh-keygen on Linux, or 
+1. Create an ssh-rsa key with ssh-keygen on Linux, or PuTTY keygen on Windows
+2. Copy the contents of your .pub keyfile (your public key), or those of the public keyfile generated with PuTTY keygen, to VM Instances > Metadata > SSH keys > Add Key > Add Key > Text field. The keys should start with ssh-rsa.
+3. On Linux, open a terminal instance, and enter: `ssh [username]@[domain or external IP] -p 22`
+4. You should be instantly taken to the account's TTY terminal.
+5. That's all!
