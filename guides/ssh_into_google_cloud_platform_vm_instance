@@ -1,2 +1,13 @@
 #t
 SSH Into a Google Cloud Platform VM Instance
+
+#b
+Merijn Sandvliet (CB101)
+
+#n
+* A computer with an operating system of any kind (preferably Linux)
+* If you only have Windows, PuTTY keygen, and PuTTY client
+* A Google Cloud Platform VM Instance
+
+#s
+1. Create an ssh-rsa key with ssh-keygen on Linux, or 
