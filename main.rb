@@ -34,7 +34,7 @@ def guideparser(path)
     end
   end
 
-  steps_raw = content.split("#s").drop(1).join("").split("\n").drop(1)
+  steps_raw = content.split("#s\n").drop(1).join("").split("\n")
   steps = []
   steps_raw.each do |step|
     steps.push step and next if step[0] == " "
